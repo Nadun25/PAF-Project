@@ -132,7 +132,7 @@ const MealPlan = ({ meal, userName }) => {
   };
 
   const handleUpdateNutrition = () => {
-    const newNutrition = prompt("Enter the new nutrition condition:");
+    const newNutrition = prompt("Enter the subjects learned");
     if (newNutrition !== null && newNutrition.trim() !== "") {
       updateNutrition(meal.id, newNutrition);
       setMenuOpen(false);
@@ -174,18 +174,18 @@ const MealPlan = ({ meal, userName }) => {
                 <div className="dropdown-menu">
                   <button onClick={handleDeletePost}>Delete MealPlan</button>
                   <button onClick={handleUpdateName}>
-                    Update MealPlan Name
+                    Update StudyPlan Name
                   </button>
                   <button onClick={handleUpdateDescription}>
                     Update Description
                   </button>
-                  <button onClick={handleUpdateRecipe}>Update Recipe</button>
+                  <button onClick={handleUpdateRecipe}>Update Resources</button>
                   <button onClick={handleUpdateNutrition}>
-                    Update Nutritional Benefits
+                    Update Subjects Learned
                   </button>
-                  <button onClick={handleUpdateSchedule}>
+                  {/* <button onClick={handleUpdateSchedule}>
                     Update Schedule
-                  </button>
+                  </button> */}
                 </div>
               )}
             </div>
@@ -219,7 +219,7 @@ const MealPlan = ({ meal, userName }) => {
               }}
             >
               <div className="sub-topic">
-                <span>Recipe</span>
+                <span>Resources</span>
               </div>
               <p>{meal.recipe}</p>
             </div>
@@ -234,9 +234,25 @@ const MealPlan = ({ meal, userName }) => {
                 }}
               >
                 <div className="sub-topic">
-                  <span>Portion per time</span>
+                  <span>Study Plan</span>
                 </div>
-                <p>{meal.portion}</p>
+                {/* <p>{meal.portion}</p>
+                {
+                console.log(meal.portion)
+                } */}
+
+<p>
+  {
+    meal.portion === 'Small' ? 'Daily Consistency Plan' :
+    meal.portion === 'Medium' ? 'Weekend Booster Plan' :
+    meal.portion === 'Large' ? 'Focused Sprint Plan' :
+    ''
+  }
+</p>
+
+{console.log(meal.portion)}
+
+
               </div>
               <div
                 style={{
@@ -248,9 +264,22 @@ const MealPlan = ({ meal, userName }) => {
                 }}
               >
                 <div className="sub-topic">
-                  <span>Meal Schedule</span>
+                  <span>Study Schedule</span>
                 </div>
-                <p>{meal.schedule}</p>
+                {/* <p>{meal.schedule}</p> */}
+                <p>
+  {
+    meal.schedule === 'one' ? '30 minutes' :
+    meal.schedule === 'two' ? '1–3 hours' :
+    meal.schedule === 'three' ? '3–5 hours' :
+    meal.schedule === 'four' ? '6–7 hours' :
+    meal.schedule === 'five' ? 'More than 7 hours' :
+    ''
+  }
+</p>
+
+{console.log(meal.schedule)}
+
               </div>
             </div>
             <div
@@ -262,7 +291,7 @@ const MealPlan = ({ meal, userName }) => {
               }}
             >
               <div className="sub-topic">
-                <span>Nutrient Benifits</span>
+                <span>Subjects Learned</span>
               </div>
               <p>{meal.nutrition}</p>
             </div>
@@ -270,7 +299,7 @@ const MealPlan = ({ meal, userName }) => {
               className="sub-topic"
               style={{ marginTop: "20px", marginBottom: "10px" }}
             >
-              <span>Dietry Conditions</span>
+              <span>Focus Mode</span>
             </div>
             <div className="points-list" style={{ width: "100%" }}>
               <ul
@@ -291,7 +320,7 @@ const MealPlan = ({ meal, userName }) => {
                           color: "white",
                         }}
                       >
-                        Suitable for vegetarians
+                        Distraction-Free Mode
                       </div>
                     </>
                   ) : null}
@@ -307,7 +336,7 @@ const MealPlan = ({ meal, userName }) => {
                           color: "white",
                         }}
                       >
-                        Suitable for vegans
+                        Listening to Music
                       </div>
                     </>
                   ) : null}
@@ -323,7 +352,7 @@ const MealPlan = ({ meal, userName }) => {
                           color: "white",
                         }}
                       >
-                        Suitable for gluten-free
+                        Digital Notes
                       </div>
                     </>
                   ) : null}
@@ -339,7 +368,7 @@ const MealPlan = ({ meal, userName }) => {
                           color: "white",
                         }}
                       >
-                        Suitable for dairy-free
+                        Hand Written Notes
                       </div>
                     </>
                   ) : null}
@@ -355,7 +384,7 @@ const MealPlan = ({ meal, userName }) => {
                           color: "white",
                         }}
                       >
-                        Suitable for nut-free
+                        Medication Before Studying
                       </div>
                     </>
                   ) : null}

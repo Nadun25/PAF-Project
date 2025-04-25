@@ -53,10 +53,10 @@ const ShareMealPlans = ({ userName, profilePic }) => {
         },
       });
       console.log(response.data); // Handle success response
-      alert("MealPlan shared successfully!");
+      alert("StudyPlan shared successfully!");
     } catch (error) {
       console.error("Error posting image:", error); // Handle error
-      alert("Error in meal plan sharing");
+      alert("Error in study plan sharing");
 
     }
   };
@@ -70,7 +70,7 @@ const ShareMealPlans = ({ userName, profilePic }) => {
         </div>
         <input className="name-input"
           type="text"
-          placeholder={`Enter Name of the Meal `}
+          placeholder={`Study Plan Name`}
           value={mealName} // Bind value of input field to meal name
           onChange={(e) => setMealName(e.target.value)}
         />
@@ -80,60 +80,60 @@ const ShareMealPlans = ({ userName, profilePic }) => {
         </div>
         <textarea className="description"
           type="text"
-          placeholder={`Enter Discription About Meal `}
+          placeholder={`Enter Discription About Study Plan `}
           value={description} // Bind value of input field to description
           onChange={(e) => setDescription(e.target.value)}
         />
         <div className="sub-topic">
-          <span>Recipe</span>
+          <span>Resourced used</span>
           <hr />
         </div>
         <textarea className="recipe"
           type="text"
-          placeholder={`Enter recipe of the Meal `}
+          placeholder={`Enter resources used `}
           value={recipe} // Bind value of input field to recipe
           onChange={(e) => setRecipe(e.target.value)}
         />
         <div className="sub-topic">
-          <span>Portion per time</span>
+          <span>Study Plan</span>
           <hr />
         </div>
         <select
           value={portion}
           onChange={(e) => setPortion(e.target.value)}
         >
-          <option value="">Select portion of the Meal</option>
-          <option value="Small">Small (100 g)</option>
-          <option value="Medium">Medium (200 g)</option>
-          <option value="Large">Large (300 g)</option>
+          <option value="">Select plan</option>
+          <option value="Small">Daily Consistency Plan</option>
+          <option value="Medium">Weekend Booster Plan</option>
+          <option value="Large">Focused Sprint Plan</option>
         </select>
         <div className="sub-topic">
-          <span>Meal Schedule</span>
+          <span>Study Schedule</span>
           <hr />
         </div>
         <select
           value={mealSchedule}
           onChange={(e) => setMealSchedule(e.target.value)}
         >
-          <option value="">Select Shedule of the Meal</option>
-          <option value="daily">Once a week</option>
-          <option value="two">Two times per week</option>
-          <option value="three">Three times per week</option>
-          <option value="four">Four times per week</option>
-          <option value="weekends">Week ends only</option>
+          <option value="">Select Schedule</option>
+          <option value="daily">30 minutes a day</option>
+          <option value="two">1 - 3 hours a day</option>
+          <option value="three">3 - 5 hours a day </option>
+          <option value="four">6 - 7 hours a day</option>
+          <option value="weekends">More than 7 hours</option>
         </select>
         <div className="sub-topic">
-          <span>Nutritinal Benifits</span>
+          <span>Subjects Learned</span>
           <hr />
         </div>
         <textarea className="nutritions"
           type="text"
-          placeholder={`Enter Nutritional benifit of the Meal `}
+          placeholder={`Enter one or more subjects `}
           value={nutritions} // Bind value of input field to meal name
           onChange={(e) => setNutritions(e.target.value)}
         />
         <div className="sub-topic">
-          <span>Dietary Preferences</span>
+          <span>Focus mode</span>
           <hr />
         </div>
         <div className="dietry">
@@ -145,7 +145,7 @@ const ShareMealPlans = ({ userName, profilePic }) => {
                 checked={vegetarian}
                 onChange={handleVegetarianChange}
               />
-              Vegetarian
+              Distraction-Free Mode
             </label>
 
             {/* Checkbox for Vegan */}
@@ -155,7 +155,7 @@ const ShareMealPlans = ({ userName, profilePic }) => {
                 checked={vegan}
                 onChange={handleVeganChange}
               />
-              Vegan
+              Listening to Music
             </label>
 
             {/* Checkbox for Gluten-Free */}
@@ -165,7 +165,7 @@ const ShareMealPlans = ({ userName, profilePic }) => {
                 checked={glutenFree}
                 onChange={handleGlutenFreeChange}
               />
-              Gluten-Free
+              Digital Notes
             </label>
 
             {/* Checkbox for Dairy-Free */}
@@ -175,7 +175,7 @@ const ShareMealPlans = ({ userName, profilePic }) => {
                 checked={dairyFree}
                 onChange={handleDairyFreeChange}
               />
-              Dairy-Free
+              Hand Written Notes
             </label>
 
             {/* Checkbox for Nut-Free */}
@@ -185,7 +185,7 @@ const ShareMealPlans = ({ userName, profilePic }) => {
                 checked={nutFree}
                 onChange={handleNutFreeChange}
               />
-              Nut-Free
+              Medication Before Studying
             </label>
           </form>
         </div>
