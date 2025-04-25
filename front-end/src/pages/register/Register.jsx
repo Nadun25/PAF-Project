@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axios from "axios"; 
 import "./register.scss";
 
 const Register = () => {
@@ -42,16 +42,16 @@ const Register = () => {
     <div className="register">
       <div className="card">
         <div className="left">
-          <h1>SkillSphere</h1>
-          <p>Join SkillSphere to explore new knowledge, build skills, and unlock your potential. Start learning today!</p>
+          <h1>Fit Fam.</h1>
+          <p>Join us and Connect. Share. Achieve. Your ultimate gym companion for fitness enthusiasts.!</p>
           <span id="successfull"></span>
         </div>
         <div className="right">
-          <h1>Create Your Account</h1>
+          <h1>Register</h1>
           <form onSubmit={handleRegister}>
             <div className="profile-picture">
               <label htmlFor="profilePictureInput">
-                Upload Profile Picture
+                Choose Profile Picture
                 <input
                   type="file"
                   accept="image/*"
@@ -77,7 +77,7 @@ const Register = () => {
             <input
               type="text"
               name="name"
-              placeholder="Full Name"
+              placeholder="Name"
               value={formData.name}
               onChange={handleInputChange}
             />

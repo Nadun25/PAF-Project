@@ -37,7 +37,7 @@ const Login = () => {
         </div>
         <div className="right">
           <div className="logo">
-           
+            <img src={Logo} width={"30px"} alt="logo"></img>
             <span>SkillSphere</span>
           </div>
           <h1>Sign In</h1>
