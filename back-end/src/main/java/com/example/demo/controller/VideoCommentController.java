@@ -38,6 +38,8 @@ public class VideoCommentController {
         }
     }
 
+
+    //save post
     @PostMapping("/saveComment")
     public ResponseEntity<String> saveComment(@RequestParam("videoId") int videoId,
                                               @RequestParam("commenterName") String commenterName,
@@ -55,6 +57,8 @@ public class VideoCommentController {
 
     }
 
+
+    // Delete
     @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable("id") int id) {
         commentsService.deleteComment(id);
