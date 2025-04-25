@@ -13,9 +13,8 @@ const Navbar = ({ userName, profilePic }) => {
   return (
     <div className="navbar">
       <div className="left">
-        <img src={Logo} width={"50px"} alt="FitHub Logo"></img>
         <Link to={`/home/${userName}`} style={{ textDecoration: "none" }}>
-          <span style={{ color: "white" }}>FitHub</span>
+          <span style={{ color: "white" }}>SkillSphere</span>
         </Link>
         <div className="search">
           <input type="text" placeholder="Search..." />
