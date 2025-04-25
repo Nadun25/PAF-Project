@@ -125,8 +125,8 @@ const handleUpdateDescription = () => {
                             <MoreHorizIcon onClick={() => setMenuOpen(!menuOpen)} />
                             {menuOpen && (
                                 <div className="dropdown-menu">
-                                    <button onClick={handleDeletePost}>Delete Post</button>
-                                    <button onClick={handleUpdateDescription}>Update Description</button>
+                                    {/* <button onClick={handleDeletePost}>Delete Post</button>
+                                    <button onClick={handleUpdateDescription}>Update Description</button> */}
                                 </div>
                             )}
                         </div>

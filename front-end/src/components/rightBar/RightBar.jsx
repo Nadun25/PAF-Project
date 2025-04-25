@@ -41,7 +41,7 @@ const RightBar = ({ userName, profilePic }) => {
             <span>{userName}</span>
           </div>
 
-          <h4>{userName}'s Current workout status</h4>
+          <h4>{userName}'s Current Learning status</h4>
 
           <form>
             {formData && (

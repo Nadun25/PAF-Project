@@ -110,12 +110,12 @@ const ShareWorkout = ({ userName, profilePic }) => {
                 <input
                     className="workout-plan-name-input"
                     type="text"
-                    placeholder="Enter Name of the Workout Plan"
+                    placeholder="Enter Name of the Learning Plan"
                     value={workoutPlanName}
                     onChange={(e) => setWorkoutPlanName(e.target.value)}
                 />
                 <div className="sub-topic">
-                    <span>Workout Description</span>
+                    <span>Learning Description</span>
                     <hr />
                 </div>
                 <textarea
@@ -178,7 +178,7 @@ const ShareWorkout = ({ userName, profilePic }) => {
                 </div>
                 <hr />
                 <div className="bottom">
-                    <button onClick={addExercise}>Add Exercise</button>
+                    {/* <button onClick={addExercise}>Add Exercise</button> */}
                     <button onClick={uploadWorkout}>Upload Workout Plan</button>
                 </div>
             </div>
