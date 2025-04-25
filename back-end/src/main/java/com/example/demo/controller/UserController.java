@@ -38,6 +38,10 @@ public class UserController {
         }
     }
 
+
+//delete user
+    
+
     @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteUser(@RequestParam("userName") String userName, @RequestParam("password") String password) {
         userService.deleteUser(userName, password);
