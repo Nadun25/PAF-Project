@@ -6,42 +6,49 @@
   justify-content: center;
 
   .card {
-    width: 50%;
+    width: 80%;
+    max-width: 1000px;
     display: flex;
     background-color: white;
     border-radius: 10px;
     min-height: 600px;
     overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 
     .left {
       flex: 1;
       background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)),
-        url("../../assets/login.jpg")
-          center;
-      background-size: cover;
+        url("../../assets/login.png") center/cover no-repeat;
       padding: 50px;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       gap: 30px;
       color: white;
 
       h1 {
-        font-size: 80px;
-        line-height: 80px;
+        font-size: 60px;
+        line-height: 1.1;
       }
 
       span {
         font-size: 14px;
       }
-      
+
       button {
-        width: 50%;
-        padding: 10px;
+        width: fit-content;
+        padding: 10px 20px;
         border: none;
         background-color: white;
         color: rebeccapurple;
         font-weight: bold;
         cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #f1f1f1;
+        }
       }
     }
 
@@ -50,31 +57,42 @@
       padding: 50px;
       display: flex;
       flex-direction: column;
-      gap: 50px;
+      gap: 40px;
       justify-content: center;
 
       .logo {
         display: flex;
         align-items: center;
-        img{
+
+        img {
           margin-right: 10px;
+          height: 40px;
+        }
+
+        span {
+          font-size: 24px;
+          font-weight: bold;
+          color: #555;
         }
       }
+
       h1 {
-      color: #555;
+        color: #555;
+        font-size: 32px;
       }
-      
+
       form {
         display: flex;
         flex-direction: column;
-        gap: 30px;
-        
+        gap: 25px;
+
         input {
-        border: none;
-        border-bottom: 1px solid lightgray;
-        padding: 20px 10px;
+          border: none;
+          border-bottom: 1px solid lightgray;
+          padding: 15px 10px;
+          font-size: 16px;
         }
-        
+
         button {
           width: 50%;
           padding: 10px;
@@ -83,6 +101,7 @@
           color: white;
           font-weight: bold;
           cursor: pointer;
+          border-radius: 5px;
         }
       }
     }
