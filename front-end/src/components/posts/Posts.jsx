@@ -1,3 +1,5 @@
+//posts page
+
 import Post from "../post/Post";
 import "./posts.scss";
 import axios from "axios";
