@@ -8,6 +8,8 @@ const VideoComments = ({ postId, commenterName, setcomments, numberOfComments })
   const [comments, setComments] = useState([]);
   const [profilePic, setProfilePic] = useState("");
   const [menuOpen, setMenuOpen] = useState({}); // Track menu open state per comment
+  const [editingComment, setEditingComment] = useState(null); // Track which comment is being edited
+  const [updatedCommentText, setUpdatedCommentText] = useState(""); // Store the updated comment text
 
   // Fetch profile photo on mount
   useEffect(() => {
@@ -39,6 +41,8 @@ const VideoComments = ({ postId, commenterName, setcomments, numberOfComments })
 
   // Handle comment submission
   const handleCommentSubmit = async () => {
+    if (!newComment.trim()) return; // Don't submit empty comments
+    
     try {
       const formData = new FormData();
       formData.append("videoId", postId);
@@ -64,13 +68,44 @@ const VideoComments = ({ postId, commenterName, setcomments, numberOfComments })
         await axios.delete(`http://localhost:8080/VideoComments/delete/${id}`);
         setNewComment(""); 
         setcomments(numberOfComments-1);
-        alert("deleted successful.")
+        alert("Comment deleted successfully.");
     } catch (error) {
         console.error('Error deleting comment:', error);
         alert('Failed to delete comment.');
     }
-};
+  };
 
+  // Start editing a comment
+  const handleStartEdit = (comment) => {
+    setEditingComment(comment.id);
+    setUpdatedCommentText(comment.comment);
+    setMenuOpen({}); // Close the dropdown menu
+  };
+
+  // Cancel editing
+  const handleCancelEdit = () => {
+    setEditingComment(null);
+    setUpdatedCommentText("");
+  };
+
+  // Handle comment update
+  const handleUpdateComment = async (id) => {
+    if (!updatedCommentText.trim()) return; // Don't update with empty text
+    
+    try {
+      // Using PATCH request with path variables similar to VideoController
+      await axios.patch(`http://localhost:8080/VideoComments/update/${id}/${encodeURIComponent(updatedCommentText)}`);
+      
+      // Reset editing state and refresh comments
+      setEditingComment(null);
+      setUpdatedCommentText("");
+      setNewComment(" "); // Trigger comment refetch
+      setTimeout(() => setNewComment(""), 100);
+    } catch (error) {
+      console.error('Error updating comment:', error);
+      alert('Failed to update comment.');
+    }
+  };
 
   // Handle menu toggle for comments
   const toggleMenu = (commentId) => {
@@ -95,6 +130,21 @@ const VideoComments = ({ postId, commenterName, setcomments, numberOfComments })
     };
   }, []);
 
+  // Format timestamp to show when comment was posted
+  const formatTimestamp = (timestamp) => {
+    if (!timestamp) return "just now";
+    
+    const commentDate = new Date(timestamp);
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - commentDate) / 1000);
+    
+    if (diffInSeconds < 60) return "just now";
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} min ago`;
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
+    
+    return commentDate.toLocaleDateString();
+  };
+
   return (
     <div className="comments">
       <div className="write">
@@ -104,6 +154,7 @@ const VideoComments = ({ postId, commenterName, setcomments, numberOfComments })
           placeholder="Write a comment"
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && handleCommentSubmit()}
         />
         <button onClick={handleCommentSubmit}>Send</button>
       </div>
@@ -116,7 +167,10 @@ const VideoComments = ({ postId, commenterName, setcomments, numberOfComments })
               <img src={`data:image/jpeg;base64,${comment.profilePicture}`} alt="Profile" />
               <div className="details">
                 <span>{comment.commenterName}</span>
-                <p className="date">1 min ago</p>
+                <p className="date">
+                  {formatTimestamp(comment.createdAt)}
+                  {comment.isEdited && <span className="edited-indicator"> (edited)</span>}
+                </p>
               </div>
             </div>
             {/* Render the context menu button for comments by the current user */}
@@ -126,6 +180,7 @@ const VideoComments = ({ postId, commenterName, setcomments, numberOfComments })
                 {/* Render the context menu */}
                 {menuOpen[comment.id] && (
                   <div className="dropdown-menu">
+                    <button onClick={() => handleStartEdit(comment)}>Edit</button>
                     <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
                   </div>
                 )}
@@ -133,7 +188,23 @@ const VideoComments = ({ postId, commenterName, setcomments, numberOfComments })
             )}
           </div>
           <div className="content">
-            <span>{comment.comment}</span>
+            {editingComment === comment.id ? (
+              <div className="edit-mode">
+                <input
+                  type="text"
+                  value={updatedCommentText}
+                  onChange={(e) => setUpdatedCommentText(e.target.value)}
+                  className="edit-input"
+                  onKeyPress={(e) => e.key === 'Enter' && handleUpdateComment(comment.id)}
+                />
+                <div className="edit-buttons">
+                  <button onClick={() => handleUpdateComment(comment.id)}>Save</button>
+                  <button onClick={handleCancelEdit}>Cancel</button>
+                </div>
+              </div>
+            ) : (
+              <span>{comment.comment}</span>
+            )}
           </div>
         </div>
       ))}

@@ -52,12 +52,26 @@ public class VideoCommentController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed comment");
         }
+    }
 
+    @PatchMapping("/update/{id}/{comment}")
+    public ResponseEntity<String> updateComment(@PathVariable("id") int id,
+                                                @PathVariable("comment") String comment) {
+        try {
+            boolean updated = commentsService.updateComment(id, comment);
+            if (updated) {
+                return ResponseEntity.ok().body("Comment updated successfully");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Comment not found");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update comment");
+        }
     }
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> deletePost(@PathVariable("id") int id) {
+    public ResponseEntity<Boolean> deletePost(@PathVariable("id") int id) {
         commentsService.deleteComment(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(Boolean.TRUE);
     }
 }
