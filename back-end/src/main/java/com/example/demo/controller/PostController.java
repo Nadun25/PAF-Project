@@ -65,7 +65,7 @@ public class PostController {
     public ResponseEntity<String> updateDescription(@PathVariable("id") int id,
                                                     @PathVariable("description") String newDescription) {
         postService.updateDescription(id, newDescription);
-        return ResponseEntity.ok("Successfully updated video");
+        return ResponseEntity.ok("Successfully updated Description");
     }
 
     @DeleteMapping("delete/{name}/{pictureId}")

@@ -52,7 +52,21 @@ public class CommentController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed comment");
         }
+    }
 
+    @PatchMapping("/update/{id}/{comment}")
+    public ResponseEntity<String> updateComment(@PathVariable("id") int id,
+                                                @PathVariable("comment") String comment) {
+        try {
+            boolean updated = commentsService.updateComment(id, comment);
+            if (updated) {
+                return ResponseEntity.ok().body("Comment updated successfully");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Comment not found");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update comment");
+        }
     }
 
     @DeleteMapping("delete/{id}")
