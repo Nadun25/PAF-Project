@@ -104,6 +104,7 @@ const handleUpdateDescription = () => {
         setMenuOpen(false);
     }
 };
+
   return (
     <div className="post">
       <div className="container">
