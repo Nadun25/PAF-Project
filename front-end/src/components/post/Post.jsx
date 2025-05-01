@@ -97,12 +97,13 @@ const handleDeletePost = () => {
     setMenuOpen(false);
 };
 
+
 const handleUpdateDescription = () => {
-    const newDescription = prompt("Enter a new description:");
-    if (newDescription !== null && newDescription.trim() !== "") {
-        updateDescription(post.id, newDescription);
-        setMenuOpen(false);
-    }
+  const newDescription = prompt("Enter a new description:");
+  if (newDescription !== null && newDescription.trim() !== "") {
+      updateDescription(post.id, newDescription);
+      setMenuOpen(false);
+  }
 };
 
   return (
