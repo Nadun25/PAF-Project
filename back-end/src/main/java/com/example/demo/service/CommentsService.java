@@ -12,6 +12,7 @@ import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CommentsService {
@@ -30,13 +31,16 @@ public class CommentsService {
         List<CommentDTO> commentsList = new ArrayList<>(length);
         for (CommentEntity commentEntity : commentEntityList) {
             CommentDTO comment = new CommentDTO();
-            String commenterName = commentEntity.getCommenterName(); // Corrected line
+            String commenterName = commentEntity.getCommenterName();
             comment.setCommenterName(commenterName);
             comment.setId(commentEntity.getId());
             // get profile picture of commenter.
             String profilePicture = userService.getProfilePhoto(commenterName);
             comment.setProfilePicture(profilePicture);
-            comment.setComment(commentEntity.getComment()); // Corrected line
+            comment.setComment(commentEntity.getComment());
+            comment.setCreatedAt(commentEntity.getCreatedAt());
+            comment.setUpdatedAt(commentEntity.getUpdatedAt());
+            comment.calculateIsEdited();
             commentsList.add(comment);
         }
         return commentsList;
@@ -54,5 +58,22 @@ public class CommentsService {
 
     public void deleteComment(int commentId) {
         commentRepository.deleteById(commentId);
+    }
+
+    // Added method to get a comment by its ID
+    public CommentEntity getCommentById(int commentId) {
+        Optional<CommentEntity> commentOptional = commentRepository.findById(commentId);
+        return commentOptional.orElse(null);
+    }
+
+    // Added method to update a comment
+    public boolean updateComment(int commentId, String updatedComment) {
+        CommentEntity commentEntity = getCommentById(commentId);
+        if (commentEntity != null) {
+            commentEntity.setComment(updatedComment);
+            commentRepository.save(commentEntity);
+            return true;
+        }
+        return false;
     }
 }
