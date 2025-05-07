@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
-import MealPlansPage from './pages/mealPlansPage/MealPlansPage';
+import LearnPlansPage from './pages/learnPlansPage/LearnPlansPage.jsx';
 import WorkoutPlanPage from './pages/workoutsPage/WorkoutsPage';
 import SupplementPage from './pages/supplementsPage/SupplementsPage';
 import VideosPage from './pages/videosPage/VideosPage';
@@ -20,7 +20,7 @@ function App() {
           <Route path="/home/:userName" element={<Home />} />
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/mealPlanes/:userName" element={<MealPlansPage />} />
+          <Route path="/mealPlanes/:userName" element={<LearnPlansPage />} />
           <Route path="/workoutPlans/:userName" element={<WorkoutPlanPage />} />
           <Route path="/supplements/:userName" element={<SupplementPage />} />
           <Route path="/videos/:userName" element={<VideosPage />} />

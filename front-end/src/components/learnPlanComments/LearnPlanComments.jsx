@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import "./MealPlanComment.scss";
+import "./LearnPlanComments.scss";
 import axios from "axios";
 
-const MealPlanComments = ({ postId, commenterName }) => {
+const LearnPlanComments = ({ postId, commenterName }) => {
     const [newComment, setNewComment] = useState("");
     const [comments, setComments] = useState([]);
     const [profilePic, setProfilePic] = useState("");
@@ -10,25 +10,25 @@ const MealPlanComments = ({ postId, commenterName }) => {
     const handleCommentSubmit = async () => {
         try {
             const formData = new FormData();
-            formData.append("mealPlanId", postId);
+            formData.append("learnPlanId", postId);
             formData.append("commenterName", commenterName);
             formData.append("comment", newComment);
-            const response = await axios.post("http://localhost:8080/mealPlanComments/saveComment", formData, {
+            const response = await axios.post("http://localhost:8080/learnPlanComments/saveComment", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             });
             setNewComment("");
-            console.log(response.data); // Handle success response
+            console.log(response.data);
         } catch (error) {
-            console.error("Error commenting:", error); // Handle error
+            console.error("Error commenting:", error);
         }
     };
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/mealPlanComments/allComments/${postId}`);
+                const response = await axios.get(`http://localhost:8080/learnPlanComments/allComments/${postId}`);
                 setComments(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -85,4 +85,4 @@ const MealPlanComments = ({ postId, commenterName }) => {
     );
 };
 
-export default MealPlanComments;
+export default LearnPlanComments;

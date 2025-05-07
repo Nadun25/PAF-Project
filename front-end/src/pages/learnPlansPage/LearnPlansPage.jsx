@@ -2,14 +2,14 @@ import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import LeftBar from "../../components/leftBar/LeftBar";
-import RightBar from "../../components/rightBar/RightBar"
-import ShareMealPlans from "../../components/shareMealPlans/ShareMealPlans"
-import MealPlans from "../../components/mealplans/MealPlans"
+import RightBar from "../../components/rightBar/RightBar";
+import ShareLearnPlans from "../../components/shareLearnPlans/ShareLearnPlans";
+import LearnPlans from "../../components/learnplans/learnplans";
 import { DarkModeContext } from "../../context/darkModeContext";
 import axios from "axios";
-import "./MealPlansPage.scss"
+import "./LearnPlansPage.scss";
 
-function MealPlansPage() {
+function LearnPlansPage() {
   const { userName } = useParams();
   const { darkMode } = useContext(DarkModeContext);
   const [profilePic, setProfilePic] = useState("");
@@ -37,8 +37,8 @@ function MealPlansPage() {
           <LeftBar userName={userName} profilePic={profilePic} />
           <div style={{ flex: 6 }}>
             <div className="home">
-              <ShareMealPlans userName={userName} profilePic={profilePic} />
-              <MealPlans userName={userName} />
+              <ShareLearnPlans userName={userName} profilePic={profilePic} />
+              <LearnPlans userName={userName} />
             </div>
           </div>
           <RightBar userName={userName} profilePic={profilePic}/>
@@ -50,4 +50,4 @@ function MealPlansPage() {
   return <Layout />;
 }
 
-export default MealPlansPage;
+export default LearnPlansPage;

@@ -1,13 +1,10 @@
-import "./mealPlan.scss";
+import "./learnPlan.scss";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import Sad from "@mui/icons-material/SentimentVeryDissatisfied";
-import Happy from "@mui/icons-material/SentimentSatisfiedAlt";
 import { Link } from "react-router-dom";
-import MealPlanComments from "../mealPlanComments/MealPlanComment";
+import LearnPlanComments from "../learnPlanComments/LearnPlanComments";
 import { useState } from "react";
 import axios from "axios";
-import Swal from "sweetalert2";
 import {
   Button,
   Modal,
@@ -20,7 +17,7 @@ import {
   Col,
 } from "antd";
 
-const MealPlan = ({ meal, userName }) => {
+const LearnPlan = ({ learn, userName }) => {
   const [commentOpen, setCommentOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [form] = Form.useForm();
@@ -28,25 +25,21 @@ const MealPlan = ({ meal, userName }) => {
   const deletePost = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:8080/deleteMeal/${id}`
+        `http://localhost:8080/deleteLearn/${id}`
       );
-      // alert("Video deleted successfully!");
     } catch (error) {
       console.error("Error deleting post:", error);
-      // alert("Failed to delete post. Please try again.");
     }
   };
 
   const updateDescription = async (id, newDescription) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8080/descriptionUpdateMeal/${id}/${newDescription}`
+        `http://localhost:8080/descriptionUpdateLearn/${id}/${newDescription}`
       );
-      // alert("Video description updated successfully!");
       return response.data;
     } catch (error) {
       console.error("Error updating description:", error);
-      // alert("Failed to update description. Please try again.");
     }
   };
 
@@ -55,70 +48,62 @@ const MealPlan = ({ meal, userName }) => {
       const response = await axios.patch(
         `http://localhost:8080/name/${id}/${newDescription}`
       );
-      // alert("Meal name updated successfully!");
       return response.data;
     } catch (error) {
       console.error("Error updating description:", error);
-      // alert("Failed to update name. Please try again.");
     }
   };
 
-  const updateRecipe = async (id, newDescription) => {
+  const updateContent = async (id, newDescription) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8080/recipe/${id}/${newDescription}`
+        `http://localhost:8080/content/${id}/${newDescription}`
       );
-      // alert("Meal recipe updated successfully!");
       return response.data;
     } catch (error) {
       console.error("Error updating description:", error);
-      // alert("Failed to update recipe. Please try again.");
     }
   };
 
-  const updateSchedule = async (id, newSchedule) => {
+  const updateStudySchedule = async (id, newSchedule) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8080/schedule/${id}/${newSchedule}`
+        `http://localhost:8080/studySchedule/${id}/${newSchedule}`
       );
-      // alert("Meal Plan Schedule updated successfully!");
       return response.data;
     } catch (error) {
       console.error("Error updating description:", error);
-      // alert("Failed to update Shedule. Please try again.");
     }
   };
 
-  const updateNutrition = async (id, newNutrition) => {
+  const updateKeyConcepts = async (id, newKeyConcepts) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8080/nutrition/${id}/${newNutrition}`
+        `http://localhost:8080/keyConcepts/${id}/${newKeyConcepts}`
       );
-      // alert("Nutrition details updated successfully!");
       return response.data;
     } catch (error) {
       console.error("Error updating description:", error);
-      // alert("Failed to update Details. Please try again.");
     }
   };
 
   const handleDeletePost = () => {
-    deletePost(meal.id);
+    deletePost(learn.id);
     setMenuOpen(false);
   };
 
   const handleUpdateDescription = () => {
-    const newDescription = prompt(meal.description);
+    const newDescription = prompt(learn.description);
     if (newDescription !== null && newDescription.trim() !== "") {
-      updateDescription(meal.id, newDescription);
+      updateDescription(learn.id, newDescription);
       setMenuOpen(false);
     }
   };
 
-  const handleUpdateRecipe = () => {
-    const newRecipe = prompt(meal.recipe);
-    if (newRecipe !== null && newRecipe.trim() !== "") {
-      updateRecipe(meal.id, newRecipe);
+  const handleUpdateContent = () => {
+    const newContent = prompt(learn.content);
+    if (newContent !== null && newContent.trim() !== "") {
+      updateContent(learn.id, newContent);
       setMenuOpen(false);
     }
   };
@@ -126,65 +111,65 @@ const MealPlan = ({ meal, userName }) => {
   const handleUpdateName = () => {
     const newName = prompt("Enter the new name:");
     if (newName !== null && newName.trim() !== "") {
-      updateName(meal.id, newName);
+      updateName(learn.id, newName);
       setMenuOpen(false);
     }
   };
 
-  const handleUpdateNutrition = () => {
-    const newNutrition = prompt("Enter the new nutrition condition:");
-    if (newNutrition !== null && newNutrition.trim() !== "") {
-      updateNutrition(meal.id, newNutrition);
+  const handleUpdateKeyConcepts = () => {
+    const newKeyConcepts = prompt("Enter the new key concepts:");
+    if (newKeyConcepts !== null && newKeyConcepts.trim() !== "") {
+      updateKeyConcepts(learn.id, newKeyConcepts);
       setMenuOpen(false);
     }
   };
 
-  const handleUpdateSchedule = () => {
-    const newShedule = prompt(meal.recipe);
-    if (newShedule !== null && newShedule.trim() !== "") {
-      updateSchedule(meal.id, newShedule);
+  const handleUpdateStudySchedule = () => {
+    const newSchedule = prompt(learn.studySchedule);
+    if (newSchedule !== null && newSchedule.trim() !== "") {
+      updateStudySchedule(learn.id, newSchedule);
       setMenuOpen(false);
     }
   };
 
   return (
-    <div className="meal">
+    <div className="learn">
       <div className="container">
         <div className="user">
           <div className="userInfo">
             <img
               style={{ borderRadius: "20px" }}
-              src={`data:image/jpeg;base64,${meal.userProfilePicture}`}
+              src={`data:image/jpeg;base64,${learn.userProfilePicture}`}
               alt="Profile"
             />
             <div className="details">
               <Link
-                to={`/profile/${meal.userName}`}
+                to={`/profile/${learn.userName}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                <span className="name">{meal.userName}</span>
+                <span className="name">{learn.userName}</span>
               </Link>
               <span className="date">1 min ago</span>
             </div>
           </div>
-          {meal.userName === userName && (
+          {learn.userName === userName && (
             <div className="menu">
               <MoreHorizIcon onClick={() => setMenuOpen(!menuOpen)} />
               {menuOpen && (
                 <div className="dropdown-menu">
-                  <button onClick={handleDeletePost}>Delete MealPlan</button>
+                  <button onClick={handleDeletePost}>Delete LearnPlan</button>
                   <button onClick={handleUpdateName}>
-                    Update MealPlan Name
+                    Update Topic Name
                   </button>
                   <button onClick={handleUpdateDescription}>
                     Update Description
                   </button>
-                  <button onClick={handleUpdateRecipe}>Update Recipe</button>
-                  <button onClick={handleUpdateNutrition}>
-                    Update Nutritional Benefits
+                  <button onClick={handleUpdateContent}>Update Content</button>
+                  <button onClick={handleUpdateKeyConcepts}>
+                    Update Key Concepts
                   </button>
-                  <button onClick={handleUpdateSchedule}>
-                    Update Schedule
+                  <button onClick={handleUpdateStudySchedule}>
+                    Update Study Schedule
                   </button>
                 </div>
               )}
@@ -194,7 +179,7 @@ const MealPlan = ({ meal, userName }) => {
         <Form form={form}>
           <div className="content">
             <h2 style={{ textAlign: "center", textDecoration: "underline" }}>
-              {meal.mealName}
+              {learn.topicName}
             </h2>
             <div
               style={{
@@ -207,9 +192,9 @@ const MealPlan = ({ meal, userName }) => {
               <div className="sub-topic">
                 <span>Description</span>
               </div>
-              <p>{meal.description}</p>
+              <p>{learn.description}</p>
             </div>
-            <img src={`data:image/jpeg;base64,${meal.post}`} alt="NoImages" />
+            <img src={`data:image/jpeg;base64,${learn.post}`} alt="NoImages" />
             <div
               style={{
                 marginTop: "20px",
@@ -219,9 +204,9 @@ const MealPlan = ({ meal, userName }) => {
               }}
             >
               <div className="sub-topic">
-                <span>Recipe</span>
+                <span>Content</span>
               </div>
-              <p>{meal.recipe}</p>
+              <p>{learn.content}</p>
             </div>
             <div style={{ display: "flex", columnGap: "15px" }}>
               <div
@@ -234,9 +219,9 @@ const MealPlan = ({ meal, userName }) => {
                 }}
               >
                 <div className="sub-topic">
-                  <span>Portion per time</span>
+                  <span>Difficulty Level</span>
                 </div>
-                <p>{meal.portion}</p>
+                <p>{learn.difficultyLevel}</p>
               </div>
               <div
                 style={{
@@ -248,9 +233,9 @@ const MealPlan = ({ meal, userName }) => {
                 }}
               >
                 <div className="sub-topic">
-                  <span>Meal Schedule</span>
+                  <span>Study Schedule</span>
                 </div>
-                <p>{meal.schedule}</p>
+                <p>{learn.studySchedule}</p>
               </div>
             </div>
             <div
@@ -262,15 +247,15 @@ const MealPlan = ({ meal, userName }) => {
               }}
             >
               <div className="sub-topic">
-                <span>Nutrient Benifits</span>
+                <span>Key Concepts</span>
               </div>
-              <p>{meal.nutrition}</p>
+              <p>{learn.keyConcepts}</p>
             </div>
             <div
               className="sub-topic"
               style={{ marginTop: "20px", marginBottom: "10px" }}
             >
-              <span>Dietry Conditions</span>
+              <span>Learning Preferences</span>
             </div>
             <div className="points-list" style={{ width: "100%" }}>
               <ul
@@ -281,7 +266,7 @@ const MealPlan = ({ meal, userName }) => {
                 }}
               >
                 <li>
-                  {meal.vegetarian ? (
+                  {learn.vegetarian ? (
                     <>
                       <div
                         style={{
@@ -291,13 +276,13 @@ const MealPlan = ({ meal, userName }) => {
                           color: "white",
                         }}
                       >
-                        Suitable for vegetarians
+                        Visual Learner
                       </div>
                     </>
                   ) : null}
                 </li>
                 <li>
-                  {meal.vegan ? (
+                  {learn.vegan ? (
                     <>
                       <div
                         style={{
@@ -307,13 +292,13 @@ const MealPlan = ({ meal, userName }) => {
                           color: "white",
                         }}
                       >
-                        Suitable for vegans
+                        Auditory Learner
                       </div>
                     </>
                   ) : null}
                 </li>
                 <li>
-                  {meal.glutenFree ? (
+                  {learn.glutenFree ? (
                     <>
                       <div
                         style={{
@@ -323,13 +308,13 @@ const MealPlan = ({ meal, userName }) => {
                           color: "white",
                         }}
                       >
-                        Suitable for gluten-free
+                        Kinesthetic Learner
                       </div>
                     </>
                   ) : null}
                 </li>
                 <li>
-                  {meal.dairyFree ? (
+                  {learn.dairyFree ? (
                     <>
                       <div
                         style={{
@@ -339,13 +324,13 @@ const MealPlan = ({ meal, userName }) => {
                           color: "white",
                         }}
                       >
-                        Suitable for dairy-free
+                        Reading/Writing Learner
                       </div>
                     </>
                   ) : null}
                 </li>
                 <li>
-                  {meal.nutFree ? (
+                  {learn.nutFree ? (
                     <>
                       <div
                         style={{
@@ -355,7 +340,7 @@ const MealPlan = ({ meal, userName }) => {
                           color: "white",
                         }}
                       >
-                        Suitable for nut-free
+                        Social Learner
                       </div>
                     </>
                   ) : null}
@@ -367,15 +352,15 @@ const MealPlan = ({ meal, userName }) => {
         <div className="info">
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
             <TextsmsOutlinedIcon />
-            <p>{meal.comments}</p>
+            <p>{learn.comments}</p>
           </div>
         </div>
         {commentOpen && (
-          <MealPlanComments postId={meal.id} commenterName={userName} />
+          <LearnPlanComments postId={learn.id} commenterName={userName} />
         )}
       </div>
     </div>
   );
 };
 
-export default MealPlan;
+export default LearnPlan;

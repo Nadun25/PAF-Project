@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MealPlanCommentDTO {
+public class LearnPlanCommentDTO {
     private int id;
     private String comment;
     private String commenterName;

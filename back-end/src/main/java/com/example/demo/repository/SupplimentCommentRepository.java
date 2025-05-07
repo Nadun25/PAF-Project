@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.MealPlanCommentEntity;
+import com.example.demo.entity.LearnPlanCommentEntity;
 import com.example.demo.entity.SupplementCommentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

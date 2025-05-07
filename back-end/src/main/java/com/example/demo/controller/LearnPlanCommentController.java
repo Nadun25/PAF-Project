@@ -1,25 +1,25 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.MealPlanCommentDTO;
-import com.example.demo.entity.CommentEntity;
-import com.example.demo.entity.MealPlanCommentEntity;
-import com.example.demo.service.MealPlanCommentService;
+import com.example.demo.dto.LearnPlanCommentDTO;
+import com.example.demo.entity.LearnPlanCommentEntity;
+import com.example.demo.service.LearnPlanCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/mealPlanComments")
-public class MealPlanCommentController {
+@RequestMapping("/learnPlanComments")
+public class LearnPlanCommentController {
     @Autowired
-    private MealPlanCommentService commentsService;
+    private LearnPlanCommentService commentsService;
 
-    @GetMapping("/numberOfComments/{mealPlanId}")
-    public ResponseEntity<Integer> numberOfComments(@PathVariable("mealPlanId") int mealPlanId) {
-        int numberOfComments = commentsService.numberOfComments(mealPlanId);
+    @GetMapping("/numberOfComments/{learnPlanId}")
+    public ResponseEntity<Integer> numberOfComments(@PathVariable("learnPlanId") int learnPlanId) {
+        int numberOfComments = commentsService.numberOfComments(learnPlanId);
         if (numberOfComments >= 0) {
             return ResponseEntity.ok(numberOfComments);
         } else {
@@ -27,9 +27,9 @@ public class MealPlanCommentController {
         }
     }
 
-    @GetMapping("/allComments/{mealPlanId}")
-    public ResponseEntity<List<MealPlanCommentDTO>> getComments(@PathVariable("mealPlanId") int mealPlanId) {
-        List<MealPlanCommentDTO> commentDTOList = commentsService.getComments(mealPlanId);
+    @GetMapping("/allComments/{learnPlanId}")
+    public ResponseEntity<List<LearnPlanCommentDTO>> getComments(@PathVariable("learnPlanId") int learnPlanId) {
+        List<LearnPlanCommentDTO> commentDTOList = commentsService.getComments(learnPlanId);
         if (commentDTOList.isEmpty()) {
             return ResponseEntity.notFound().build();
         } else {
@@ -38,12 +38,12 @@ public class MealPlanCommentController {
     }
 
     @PostMapping("/saveComment")
-    public ResponseEntity<String> saveComment(@RequestParam("mealPlanId") int mealPlanId,
+    public ResponseEntity<String> saveComment(@RequestParam("learnPlanId") int learnPlanId,
                                               @RequestParam("commenterName") String commenterName,
                                               @RequestParam("comment") String comment) {
         try {
-            MealPlanCommentEntity commentEntity = new MealPlanCommentEntity();
-            commentEntity.setMealPlanId(mealPlanId);
+            LearnPlanCommentEntity commentEntity = new LearnPlanCommentEntity();
+            commentEntity.setLearnPlanId(learnPlanId);
             commentEntity.setCommenterName(commenterName);
             commentEntity.setComment(comment);
             commentsService.saveComment(commentEntity);
@@ -51,6 +51,5 @@ public class MealPlanCommentController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed comment");
         }
-
     }
 }
