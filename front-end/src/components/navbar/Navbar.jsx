@@ -15,7 +15,7 @@ const Navbar = ({ userName, profilePic }) => {
       <div className="left">
 
         <Link to={`/home/${userName}`} style={{ textDecoration: "none" }}>
-          <span style={{ color: "white" }}>FitHub</span>
+          <span style={{ color: "white" }}>Skill Sphere</span>
         </Link>
         <div className="search">
           <input type="text" placeholder="Search..." />
