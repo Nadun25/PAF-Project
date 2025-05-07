@@ -101,7 +101,7 @@ const LeftBar = ({ userName }) => {
             </svg>
             <span>Watch</span>
           </Link>
-          <Link to={`/workoutPlans/${userName}`} className="item">
+          {/* <Link to={`/workoutPlans/${userName}`} className="item">
             <svg
               version="1.1"
               id="Layer_1"
@@ -119,7 +119,7 @@ const LeftBar = ({ userName }) => {
               </g>
             </svg>
             <span>WorkOuts</span>
-          </Link>
+          </Link> */}
           <Link to={`/mealPlanes/${userName}`} className="item">
             <svg
               version="1.1"
@@ -137,9 +137,9 @@ const LeftBar = ({ userName }) => {
                 />
               </g>
             </svg>
-            <span>Meal Planning</span>
+            <span>learn Planning</span>
           </Link>
-          <Link to={`/currentWorkoutStatus/${userName}`} className="item">
+          {/* <Link to={`/currentWorkoutStatus/${userName}`} className="item">
             <svg
               version="1.1"
               id="Layer_1"
@@ -157,7 +157,7 @@ const LeftBar = ({ userName }) => {
               </g>
             </svg>
             <span>Workout Status</span>
-          </Link>
+          </Link> */}
           <div
             style={{
               position: "absolute",
