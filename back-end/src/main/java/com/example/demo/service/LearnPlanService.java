@@ -63,38 +63,23 @@ public class LearnPlanService {
         learnPlanRepository.deleteById(id);
     }
 
-    public void updateDescription(int id, String newDescription) {
-        learnPlanRepository.findById(id).ifPresent(entity -> {
-            entity.setDescription(newDescription);
-            learnPlanRepository.save(entity);
-        });
-    }
-
-    public void updatePlanName(int id, String newName) {
-        learnPlanRepository.findById(id).ifPresent(entity -> {
-            entity.setMealName(newName); // Keep original field name
-            learnPlanRepository.save(entity);
-        });
-    }
-
-    public void updateContent(int id, String newContent) {
-        learnPlanRepository.findById(id).ifPresent(entity -> {
-            entity.setRecipe(newContent); // Keep original field name
-            learnPlanRepository.save(entity);
-        });
-    }
-
-    public void updateNutrition(int id, String nutrition) {
-        learnPlanRepository.findById(id).ifPresent(entity -> {
-            entity.setNutrition(nutrition);
-            learnPlanRepository.save(entity);
-        });
-    }
-
-    public void updateSchedule(int id, String schedule) {
-        learnPlanRepository.findById(id).ifPresent(entity -> {
-            entity.setSchedule(schedule);
-            learnPlanRepository.save(entity);
-        });
-    }
+public void updateLearnPlan(int id, LearnPlanEntity updatedPlan) {
+    LearnPlanEntity existingPlan = learnPlanRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Study Plan not found"));
+    
+    // Update all fields
+    existingPlan.setMealName(updatedPlan.getMealName());
+    existingPlan.setDescription(updatedPlan.getDescription());
+    existingPlan.setRecipe(updatedPlan.getRecipe());
+    existingPlan.setPortion(updatedPlan.getPortion());
+    existingPlan.setSchedule(updatedPlan.getSchedule());
+    existingPlan.setNutrition(updatedPlan.getNutrition());
+    existingPlan.setVegetarian(updatedPlan.isVegetarian());
+    existingPlan.setVegan(updatedPlan.isVegan());
+    existingPlan.setGlutenFree(updatedPlan.isGlutenFree());
+    existingPlan.setDairyFree(updatedPlan.isDairyFree());
+    existingPlan.setNutFree(updatedPlan.isNutFree());
+    
+    learnPlanRepository.save(existingPlan);
+}
 }
