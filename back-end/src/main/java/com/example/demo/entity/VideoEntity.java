@@ -7,6 +7,19 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Blob;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -21,3 +34,17 @@ public class VideoEntity {
     @Lob
     private Blob video;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
