@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import MealPlan from "../mealplan/MealPlan";
+import LearnPlan from "../learnplan/LearnPlan";
 import axios from "axios";
-import "./MealPlans.scss";
+import "./LearnPlans.scss";
 
 const MealPlans = ({ userName }) => {
   const [mealPlans, setMealPlans] = useState([]);
@@ -30,7 +30,7 @@ const MealPlans = ({ userName }) => {
   return (
     <div className="mealplanes">
       {mealPlans.map(mealPlan => (
-        <MealPlan meal={mealPlan} userName={userName} key={mealPlan.id} />
+        <LearnPlan meal={mealPlan} userName={userName} key={mealPlan.id} />
       ))}
     </div>
   );

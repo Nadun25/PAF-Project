@@ -1,8 +1,8 @@
-import "./mealPlan.scss";
+import "./LearnPlan.scss";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom";
-import MealPlanComments from "../mealPlanComments/MealPlanComment";
+import LearnPlanComments from "../learnPlanComments/LearnPlanComment";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -307,7 +307,7 @@ const MealPlan = ({ meal, userName }) => {
           </div>
         </div>
         {commentOpen && (
-          <MealPlanComments postId={meal.id} commenterName={userName} />
+          <LearnPlanComments postId={meal.id} commenterName={userName} />
         )}
       </div>
 

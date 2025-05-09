@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./MealPlanComment.scss";
+import "./LearnPlanComment.scss";
 import axios from "axios";
 
 const MealPlanComments = ({ postId, commenterName }) => {

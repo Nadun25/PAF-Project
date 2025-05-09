@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./ShareMealPlans.scss";
+import "./ShareLearnPlans.scss";
 import Image from "../../assets/img.png";
 
 const ShareMealPlans = ({ userName, profilePic }) => {
