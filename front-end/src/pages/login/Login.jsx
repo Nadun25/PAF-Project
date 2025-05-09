@@ -26,25 +26,25 @@ const Login = () => {
     <div className="login">
       <div className="card">
         <div className="left">
-          <h1>Build Your Body</h1>
+          <h1>Empower Your Skills</h1>
           <p>
-            Welcome to our fitness community! Join us and start your fitness journey from today.
+            Welcome to SkillSphere — your gateway to learning, growth, and endless possibilities. Start your journey today.
           </p>
-          <span>Don't you have an account?</span>
+          <span>Don't have an account?</span>
           <Link to="/register">
-            <button>Register</button>
+            <button>Join Now</button>
           </Link>
         </div>
         <div className="right">
           <div className="logo">
-            <img src={Logo} width={"30px"} alt="logo"></img>
-            <span>FitFam</span>
+           
+            <span>SkillSphere</span>
           </div>
-          <h1>Login</h1>
+          <h1>Sign In</h1>
           <form>
             <input id="userName" type="text" placeholder="Username" required/>
             <input id="password" type="password" placeholder="Password" required/>
-            <button type="button" onClick={handleLogin}>Login</button> {/* Setting type to button */}
+            <button type="button" onClick={handleLogin}>Login</button>
           </form>
         </div>
       </div>
