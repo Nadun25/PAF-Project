@@ -7,24 +7,21 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MealPlanDTO {
+public class LearnPlanDTO {
     private int id;
     private String userName;
     private String userProfilePicture;
     private String post;
-    private String mealName;
+    private String mealName; // Keep original field name
     private String description;
-    private String recipe;
+    private String recipe; // Keep original field name
     private String nutrition;
     private String portion;
     private String schedule;
-
-    // Dietary preferences
     private boolean vegetarian;
     private boolean vegan;
     private boolean glutenFree;
     private boolean dairyFree;
     private boolean nutFree;
-
     private int comments;
 }
