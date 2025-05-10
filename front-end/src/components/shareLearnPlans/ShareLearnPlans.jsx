@@ -54,6 +54,7 @@ const ShareMealPlans = ({ userName, profilePic }) => {
       });
       console.log(response.data); // Handle success response
       alert("StudyPlan shared successfully!");
+      window.location.reload(); // Reload the page to see the new post
     } catch (error) {
       console.error("Error posting image:", error); // Handle error
       alert("Error in study plan sharing");
